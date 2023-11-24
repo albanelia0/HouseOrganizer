@@ -1,7 +1,9 @@
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 import { Logo } from './Logo';
+import { Props } from './types';
 
-export const Header = () => {
+export const Header = ({onChange, value}: Props) => {
+
   return (
     <View style={styles.header}>
       <View style={styles.topContainer}>
@@ -15,8 +17,8 @@ export const Header = () => {
       </View>
       <TextInput
         style={styles.input}
-        // onChangeText={onChangeNumber}
-        // value={number}
+        onChangeText={onChange}
+        value={value}
         placeholder="Search..."
         keyboardType="default"
       />

@@ -1,0 +1,1 @@
+export const STORAGE_KEY = "organizer_items"
