@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 
 export interface Props {
-  onChange: Dispatch<SetStateAction<string>>;
+  onChange: (value: string) => void;
   value: string;
 }

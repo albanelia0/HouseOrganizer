@@ -2,14 +2,35 @@ import { View, Text, StyleSheet } from "react-native"
 import { Props } from "./types";
 
 export const Card = ({title, desc, frequency, passedDays}: Props): JSX.Element => {
+
+  const renderColor = () => {
+    if (frequency < passedDays)
+      return "#EB9B9B"
+
+    if (passedDays + 10 >= frequency)
+      return "#ffc074"
+
+    return "#81b4f8"
+  }
+
+  const renderBackgroundColor = () => {
+    if (frequency < passedDays)
+      return "#fcf0f0"
+
+    if (passedDays + 10 >= frequency)
+      return "#f8f2eb"
+
+    return "#e6f0ff"
+  }
+
   return(
-    <View style={{...styles.wrapper, backgroundColor: "#fcf0f0"}}>
+    <View style={{...styles.wrapper, backgroundColor: renderBackgroundColor()}}>
       <Text style={styles.title}>
         {title}
       </Text>
       <View
         style={{
-          borderBottomColor: '#EB9B9B',
+          borderBottomColor: renderColor(),
           borderBottomWidth: 1.5,
         }}
       />
@@ -26,11 +47,9 @@ export const Card = ({title, desc, frequency, passedDays}: Props): JSX.Element =
 
 const styles = StyleSheet.create({
   wrapper: {
-    width: "45%",
+    width: "100%",
     borderRadius: 10,
     padding: 15,
-    marginRight: 20,
-    marginLeft: 20
   },
   daysContainer: {
     flexDirection: 'row',
