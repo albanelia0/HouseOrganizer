@@ -32,6 +32,8 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     marginBottom: 21,
     gap: 20,
+    backgroundColor: '#F3F3F3',
+    padding: 20
   },
   topContainer: {
     flexDirection: "row",

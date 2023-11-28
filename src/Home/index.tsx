@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Header } from "../Header"
+import { CardList } from './CardList';
 
 export const Home = () => {
   const [inputValue, setInputValue] = useState('')
@@ -8,7 +9,15 @@ export const Home = () => {
   return (
     <View>
       <Header value={inputValue} onChange={setInputValue}/>
-        <Text>Content</Text>
+      <CardList />
+
     </View>
   )
 }
+
+// const styles = StyleSheet.create({
+//   wrapper: {
+//     backgroundColor: "#FFFFFF"
+//     he
+//   },
+// });
