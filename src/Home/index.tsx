@@ -1,35 +1,61 @@
-import { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { useEffect, useState } from 'react';
+import { View } from 'react-native';
 import { Header } from "../Header"
 import { CardList } from './CardList';
 import { useSavedDate } from '../hooks/useSavedData';
+import { Card } from './CardList/types';
 
 export const Home = () => {
-  const [inputValue, setInputValue] = useState('')
-  const {saveData, readData} = useSavedDate()
+  const [allSavedData, setAllSavedData] = useState<Card[]>([])
+  const [searchInput, setSearchInput] = useState('')
+  const {saveData, readData, deleteAllData} = useSavedDate()
 
-  const handleChange = (value: string) => {
-    setInputValue(value)
-    saveData(value)
+  useEffect(() => {
+    (async () => {
+      const data = await readData()
+
+      if(!data) return
+
+      const newResult = data.map((data) => {
+      if(!data) return
+
+        const currentDate = new Date().getTime();
+
+        const Difference_In_Time = Number(data.date) - currentDate;
+        const Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+        return ({...data,passedDays: Math.round(Difference_In_Days)})
+      })
+
+      const finalResult = newResult.filter(v => v !== undefined)
+      finalResult && setAllSavedData(finalResult)
+    })()
+  }, [])
+
+
+  const handleSearchChange = (value: string) => {
+    setSearchInput(value)
   }
 
-  (async () => await readData().then(console.log))()
+  const handleSaveButton = (target: Card) => {
+      setAllSavedData(prev => {
+        const alreadyExists = prev.some(x => x.title  === target.title)
+        if (alreadyExists) return prev
 
-  
-
+        const next = [...prev, target]
+        saveData(next)
+        return next
+    });
+  }
 
   return (
     <View>
-      <Header value={inputValue} onChange={handleChange}/>
-      <CardList />
+      <Header
+        searchValue={searchInput}
+        onSaveButton={handleSaveButton}
+        onSearchChange={handleSearchChange}
+      />
+      <CardList data={allSavedData}/>
 
     </View>
   )
 }
-
-// const styles = StyleSheet.create({
-//   wrapper: {
-//     backgroundColor: "#FFFFFF"
-//     he
-//   },
-// });

@@ -4,10 +4,10 @@ import { Props } from "./types";
 export const Card = ({title, desc, frequency, passedDays}: Props): JSX.Element => {
 
   const renderColor = () => {
-    if (frequency < passedDays)
+    if (frequency <= passedDays)
       return "#EB9B9B"
 
-    if (passedDays + 10 >= frequency)
+    if (passedDays !== 0 && passedDays + 3 >= frequency)
       return "#ffc074"
 
     return "#81b4f8"
@@ -17,7 +17,7 @@ export const Card = ({title, desc, frequency, passedDays}: Props): JSX.Element =
     if (frequency < passedDays)
       return "#fcf0f0"
 
-    if (passedDays + 10 >= frequency)
+    if (passedDays !== 0 && passedDays + 3 >= frequency)
       return "#f8f2eb"
 
     return "#e6f0ff"

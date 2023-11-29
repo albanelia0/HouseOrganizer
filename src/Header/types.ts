@@ -1,6 +1,8 @@
 import { Dispatch, SetStateAction } from "react";
+import { Card } from "../Home/CardList/types";
 
 export interface Props {
-  onChange: (value: string) => void;
-  value: string;
+  onSearchChange: (value: string) => void;
+  onSaveButton: (target: Card) => void;
+  searchValue: string
 }

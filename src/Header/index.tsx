@@ -1,27 +1,28 @@
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 import { Logo } from './Logo';
 import { Props } from './types';
+import { Search } from './Search';
+import { useState } from 'react';
+import { Create } from './Create';
 
-export const Header = ({onChange, value}: Props) => {
+export const Header = ({onSearchChange, onSaveButton, searchValue}: Props) => {
+  const [isCreatedClicked, setIsCreatedClick] = useState(false)
+
+  const handleCreateClick = () => setIsCreatedClick(p => !p)
 
   return (
     <View style={styles.header}>
       <View style={styles.topContainer}>
         <Logo />
         <TouchableOpacity
-          // onPress={onPressLearnMore}
+          onPress={() => setIsCreatedClick(p => !p)}
           accessibilityLabel="Learn more about this purple button"
         >
           <Text style={styles.plusButton}>﹢</Text>
         </TouchableOpacity>
       </View>
-      <TextInput
-        style={styles.input}
-        onChangeText={onChange}
-        value={value}
-        placeholder="Search..."
-        keyboardType="default"
-      />
+      {isCreatedClicked ? <Create onClick={handleCreateClick} onSaveButton={onSaveButton} />:
+      <Search onChange={onSearchChange} value={searchValue} />}
     </View>
   )
 }
@@ -44,10 +45,4 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: "#56487C"
   },
-  input: {
-    borderRadius: 7,
-    backgroundColor: "#FFF",
-    padding: 10,
-    width: "100%"
-  }
 });
