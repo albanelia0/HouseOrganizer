@@ -6,10 +6,11 @@ import { useSavedDate } from '../hooks/useSavedData';
 import { Card } from './CardList/types';
 import { useDifferenceInDays } from '../hooks/useDifferenceInDays';
 import { styles } from './styles';
+import { Search } from './types';
 
-export const Home = () => {
+export const Home = (): JSX.Element => {
   const [allSavedData, setAllSavedData] = useState<Card[]>([])
-  const [searchInput, setSearchInput] = useState('')
+  const [searchInput, setSearchInput] = useState<Search>({value: "", list: [], error: false})
   const {saveData, readData, deleteAllData} = useSavedDate()
 
   useEffect(() => {
@@ -26,7 +27,15 @@ export const Home = () => {
 
 
   const handleSearchChange = (value: string) => {
-    setSearchInput(value)
+    const res = allSavedData.filter(({title}) => {
+      return title.toLowerCase().includes(value.toLowerCase())
+    })
+    if(res.length) {
+      setSearchInput({value: value, list: res, error: false})
+      return
+    }
+
+    setSearchInput(prev => ({...prev, value, error: true}))
   }
 
   const handleSaveButton = (target: Card) => {
@@ -43,11 +52,11 @@ export const Home = () => {
   return (
     <View style={styles.wrapper}>
       <Header
-        searchValue={searchInput}
+        search={searchInput}
         onSaveButton={handleSaveButton}
         onSearchChange={handleSearchChange}
       />
-      <CardList data={allSavedData}/>
+      <CardList data={searchInput.list.length ? searchInput.list : allSavedData}/>
 
     </View>
   )
