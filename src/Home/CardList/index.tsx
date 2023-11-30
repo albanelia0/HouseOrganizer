@@ -3,7 +3,6 @@ import { Card } from "../../shared/Card"
 import { Props } from "./types";
 
 export const CardList = ({ data }:Props ) => {
-  console.log("data", data?.length);
 
   if(!data?.length) return null;
 
@@ -12,7 +11,7 @@ export const CardList = ({ data }:Props ) => {
       <View style={styles.wrapper}>
         <View style={styles.list}>
           {data?.map(({desc, title, passedDays, frequency}) =>
-            <Card key={title} desc={desc} title={title} passedDays={passedDays === -0 ? 0 : passedDays} frequency={frequency || 0} />
+            <Card key={title} desc={desc} title={title} passedDays={passedDays === -0 ? 0 : passedDays} frequency={Number(frequency)} />
           )}
         </View>
         </View>
@@ -24,6 +23,7 @@ const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: "#FFFFFF",
     height: "100%",
+    marginBottom: 10,
   },
   list: {
     flexDirection: "row",

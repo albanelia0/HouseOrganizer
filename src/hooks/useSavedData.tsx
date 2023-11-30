@@ -27,7 +27,6 @@ export const useSavedDate = () => {
   const deleteAllData = async () => {
     try {
       const result = await AsyncStorage.removeItem(STORAGE_KEY);
-      console.log("result", result);
       if (result !== null) {
         return result;
       }

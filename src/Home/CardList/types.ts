@@ -5,7 +5,7 @@ export interface Props {
 export interface Card {
   title: string;
   desc: string;
-  frequency: number | null;
+  frequency: string;
   passedDays: number;
   date: string;
 }

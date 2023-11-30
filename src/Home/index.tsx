@@ -4,6 +4,7 @@ import { Header } from "../Header"
 import { CardList } from './CardList';
 import { useSavedDate } from '../hooks/useSavedData';
 import { Card } from './CardList/types';
+import { useDifferenceInDays } from '../hooks/useDifferenceInDays';
 
 export const Home = () => {
   const [allSavedData, setAllSavedData] = useState<Card[]>([])
@@ -16,17 +17,8 @@ export const Home = () => {
 
       if(!data) return
 
-      const newResult = data.map((data) => {
-      if(!data) return
-
-        const currentDate = new Date().getTime();
-
-        const Difference_In_Time = Number(data.date) - currentDate;
-        const Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
-        return ({...data,passedDays: Math.round(Difference_In_Days)})
-      })
-
-      const finalResult = newResult.filter(v => v !== undefined)
+      const finalResult = useDifferenceInDays(data)
+      console.log("finalResult: ", finalResult)
       finalResult && setAllSavedData(finalResult)
     })()
   }, [])
