@@ -8,7 +8,7 @@ export const CardList = ({ data, onEdit, onDelete }:Props ) => {
   if(!data?.length) return null;
 
   return (
-    <ScrollView>
+    <ScrollView automaticallyAdjustKeyboardInsets={true}>
       <View style={styles.wrapper}>
         <View style={styles.list}>
           {data?.map((item) =>

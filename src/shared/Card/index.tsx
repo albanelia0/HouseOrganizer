@@ -1,4 +1,6 @@
 import { View, Text, TextInput, Button } from "react-native";
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
 import { Props } from "./types";
 import { styles } from "./styles";
 import { useState } from "react";
@@ -54,23 +56,12 @@ export const Card = ({
         )}
         <View style={styles.iconContainer}>
           {isEditClicked ? (
-            <Button
-              title="✓"
-              color="#56487C"
-              onPress={handleSave}
-            />
+            <Icon onPress={handleSave} name="done" size={18} color="#56487C" />
           ) : (
-            <Button
-              title="✎"
-              color="#56487C"
-              onPress={() => setIsEditClicked(true)}
-            />
+            <Icon onPress={() => setIsEditClicked(p => !p)} name="edit" size={18} color="#56487C" />
           )}
-          <Button
-              title="𝑥"
-              color="#56487C"
-              onPress={() => onDelete(item)}
-            />
+          <Icon onPress={() => onDelete(item)} name="close" size={18} color="#56487C" />
+
         </View>
       </View>
       <View
