@@ -43,7 +43,7 @@ export const Home = (): JSX.Element => {
         const alreadyExists = prev.some(x => x.title  === target.title)
         if (alreadyExists) return prev
 
-        const next = [...prev, target]
+        const next = [ target,...prev,]
         saveData(next)
         return next
     });
