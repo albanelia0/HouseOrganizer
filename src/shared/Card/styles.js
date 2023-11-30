@@ -6,6 +6,13 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 15,
   },
+  titleContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingLeft: 10,
+    paddingRight: 10,
+    width: "100%",
+  },
   daysContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -24,5 +31,27 @@ export const styles = StyleSheet.create({
   desc: {
     paddingTop: 10,
     fontSize: 13
+  },
+  iconContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: 20,
+  },
+  pencil: {
+    fontSize: 19,
+    color: '#8F8989'
+  },
+  trash: {
+    color: '#8F8989',
+    fontSize: 25,
+    marginTop: -5
+  },
+  editInput: {
+    backgroundColor: '#e2dfdf',
+    borderRadius: 10,
+    width: '80%',
+    padding: 10,
+    marginTop: 10,
+    
   }
 });

@@ -1,6 +1,6 @@
-import { Card } from "../../Home/CardList/types";
+import { CardType } from "../../Home/CardList/types";
 
-export const useDifferenceInDays = (data: Card[]): Array<Card> | null => {
+export const useDifferenceInDays = (data: CardType[]): Array<CardType> | null => {
 
   if(!data) return null
 

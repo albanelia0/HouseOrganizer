@@ -1,10 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { STORAGE_KEY } from './settings';
-import { Card } from '../Home/CardList/types';
+import { CardType } from '../Home/CardList/types';
 
 export const useSavedDate = () => {
 
-  const saveData = async (value: Card[]) => {
+  const saveData = async (value: CardType[]) => {
     try {
       await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(value))
     } catch (e) {
@@ -12,7 +12,7 @@ export const useSavedDate = () => {
     }
   }
 
-  const readData = async (): Promise<Card[] | undefined> => {
+  const readData = async (): Promise<CardType[] | undefined> => {
     try {
       const result = await AsyncStorage.getItem(STORAGE_KEY);
       if (result !== null) {

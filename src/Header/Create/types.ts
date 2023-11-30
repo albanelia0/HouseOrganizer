@@ -1,6 +1,6 @@
-import { Card } from "../../Home/CardList/types";
+import { CardType } from "../../Home/CardList/types";
 
 export interface Props {
-  onSaveButton: (target: Card) => void;
+  onSaveButton: (target: CardType) => void;
   onClick: () => void;
 }

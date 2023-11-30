@@ -1,17 +1,19 @@
 import { useState } from "react";
 import { TextInput, View, Button, Text } from "react-native";
+import uuid from 'react-native-uuid';
 
-import { Card } from "../../Home/CardList/types";
+import { CardType } from "../../Home/CardList/types";
 import { Props } from "./types";
 import { styles } from "./styles";
 
 export const Create = ({ onSaveButton, onClick }: Props) => {
-  const [inputsValue, setInputsValue] = useState<Card>({
+  const [inputsValue, setInputsValue] = useState<CardType>({
     title: "",
     desc: "",
     frequency: "",
     passedDays: 0,
     date: "",
+    id: ""
   });
 
   const handleChange = (name: string, value: string) => {
@@ -35,6 +37,7 @@ export const Create = ({ onSaveButton, onClick }: Props) => {
       ...inputsValue,
       date: `${new Date().getTime()}`,
       passedDays: 0,
+      id: uuid.v4()
     });
     onClick();
   };

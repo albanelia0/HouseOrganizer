@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
     alignItems: 'flex-start',
     marginBottom: 21,
     gap: 20,
-    backgroundColor: '#F3F3F3',
+    backgroundColor: '#CBC6D3',
     padding: 20
   },
   topContainer: {

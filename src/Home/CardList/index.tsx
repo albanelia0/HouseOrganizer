@@ -3,7 +3,7 @@ import { Card } from "../../shared/Card"
 import { Props } from "./types";
 import { styles } from "./styles";
 
-export const CardList = ({ data }:Props ) => {
+export const CardList = ({ data, onEdit, onDelete }:Props ) => {
 
   if(!data?.length) return null;
 
@@ -11,8 +11,8 @@ export const CardList = ({ data }:Props ) => {
     <ScrollView>
       <View style={styles.wrapper}>
         <View style={styles.list}>
-          {data?.map(({desc, title, passedDays, frequency}) =>
-            <Card key={title} desc={desc} title={title} passedDays={passedDays === -0 ? 0 : passedDays} frequency={Number(frequency)} />
+          {data?.map((item) =>
+            <Card onDelete={onDelete} onEdit={onEdit} item={item} key={item.id} desc={item.desc} title={item.title} passedDays={item.passedDays === -0 ? 0 : item.passedDays} frequency={Number(item.frequency)} />
           )}
         </View>
         </View>
