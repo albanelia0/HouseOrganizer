@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { TextInput, StyleSheet, View, Button, Text } from "react-native";
+import { TextInput, View, Button, Text } from "react-native";
 
 import { Card } from "../../Home/CardList/types";
 import { Props } from "./types";
+import { styles } from "./styles";
 
 export const Create = ({ onSaveButton, onClick }: Props) => {
   const [inputsValue, setInputsValue] = useState<Card>({
@@ -69,27 +70,3 @@ export const Create = ({ onSaveButton, onClick }: Props) => {
     </View>
   );
 };
-const styles = StyleSheet.create({
-  wrapper: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
-    alignItems: "center",
-    width: "100%",
-  },
-  input: {
-    borderRadius: 7,
-    backgroundColor: "#FFF",
-    padding: 10,
-    width: "46%",
-  },
-  daysContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 10,
-    marginTop: 10,
-  },
-  button: {
-    backgroundColor: "white",
-  },
-});

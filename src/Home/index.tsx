@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { Header } from "../Header"
 import { CardList } from './CardList';
 import { useSavedDate } from '../hooks/useSavedData';
 import { Card } from './CardList/types';
 import { useDifferenceInDays } from '../hooks/useDifferenceInDays';
+import { styles } from './styles';
 
 export const Home = () => {
   const [allSavedData, setAllSavedData] = useState<Card[]>([])
@@ -40,7 +41,7 @@ export const Home = () => {
   }
 
   return (
-    <View>
+    <View style={styles.wrapper}>
       <Header
         searchValue={searchInput}
         onSaveButton={handleSaveButton}

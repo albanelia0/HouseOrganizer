@@ -1,5 +1,6 @@
 import { TextInput, StyleSheet } from "react-native"
 import { Props } from "./types";
+import { styles } from "./styles";
 
 export const Search = ({onChange, value}: Props) => {
   return (
@@ -12,11 +13,3 @@ export const Search = ({onChange, value}: Props) => {
       />
   )
 }
-const styles = StyleSheet.create({
-  input: {
-    borderRadius: 7,
-    backgroundColor: "#FFF",
-    padding: 10,
-    width: "100%"
-  }
-});

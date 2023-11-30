@@ -4,6 +4,7 @@ import { Props } from './types';
 import { Search } from './Search';
 import { useState } from 'react';
 import { Create } from './Create';
+import { styles } from './styles';
 
 export const Header = ({onSearchChange, onSaveButton, searchValue}: Props) => {
   const [isCreatedClicked, setIsCreatedClick] = useState(false)
@@ -26,23 +27,3 @@ export const Header = ({onSearchChange, onSaveButton, searchValue}: Props) => {
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  header: {
-    flexDirection: "column",
-    alignItems: 'flex-start',
-    marginBottom: 21,
-    gap: 20,
-    backgroundColor: '#F3F3F3',
-    padding: 20
-  },
-  topContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    width: "100%",
-  },
-  plusButton: {
-    fontSize: 30,
-    color: "#56487C"
-  },
-});

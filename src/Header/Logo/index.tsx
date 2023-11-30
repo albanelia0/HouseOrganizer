@@ -1,5 +1,6 @@
-import { View, StyleSheet, Text } from "react-native"
+import { View, Text } from "react-native"
 import Svg, {Path} from "react-native-svg"
+import { styles } from "./styles"
 
 export const Logo = () => {
   return (
@@ -15,15 +16,3 @@ export const Logo = () => {
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  logoContainer: {
-    flexDirection: "row",
-  },
-  logoText: {
-    color: "#56487C",
-    width: 110,
-    fontSize: 16,
-    fontWeight: "bold"
-  },
-});

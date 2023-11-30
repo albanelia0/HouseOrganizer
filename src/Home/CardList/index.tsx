@@ -1,6 +1,7 @@
-import { View, StyleSheet, ScrollView } from "react-native";
+import { View, ScrollView } from "react-native";
 import { Card } from "../../shared/Card"
 import { Props } from "./types";
+import { styles } from "./styles";
 
 export const CardList = ({ data }:Props ) => {
 
@@ -18,19 +19,3 @@ export const CardList = ({ data }:Props ) => {
     </ScrollView>
   )
 }
-
-const styles = StyleSheet.create({
-  wrapper: {
-    backgroundColor: "#FFFFFF",
-    height: "100%",
-    marginBottom: 10,
-  },
-  list: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    gap: 10,
-    marginLeft: 10,
-    marginRight: 10,
-    justifyContent: "center",
-  }
-});

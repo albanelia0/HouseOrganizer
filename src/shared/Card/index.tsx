@@ -1,5 +1,6 @@
-import { View, Text, StyleSheet } from "react-native"
+import { View, Text } from "react-native"
 import { Props } from "./types";
+import { styles } from "./styles";
 
 export const Card = ({title, desc, frequency, passedDays}: Props): JSX.Element => {
 
@@ -45,29 +46,3 @@ export const Card = ({title, desc, frequency, passedDays}: Props): JSX.Element =
   )
 }
 
-const styles = StyleSheet.create({
-  wrapper: {
-    width: "100%",
-    borderRadius: 10,
-    padding: 15,
-  },
-  daysContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingTop: 20,
-  },
-  days: {
-    fontSize: 10,
-    color: '#8F8989'
-  },
-  title: {
-    color: '#534E4E',
-    paddingBottom: 10,
-    textAlign: 'center',
-    fontSize: 13
-  },
-  desc: {
-    paddingTop: 10,
-    fontSize: 13
-  }
-});
