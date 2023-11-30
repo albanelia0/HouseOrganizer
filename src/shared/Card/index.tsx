@@ -1,5 +1,5 @@
 import { View, Text, TextInput, Button } from "react-native";
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import { Props } from "./types";
 import { styles } from "./styles";
@@ -21,7 +21,7 @@ export const Card = ({
   const renderColorLine = () => {
     if (passedDays >= frequency) return "#EB9B9B";
 
-    if (passedDays + 3 >= frequency) return "#ffc074";
+    if (passedDays && passedDays + 3 >= frequency) return "#ffc074";
 
     return "#749A90";
   };
@@ -29,7 +29,7 @@ export const Card = ({
   const renderBackgroundColor = () => {
     if (passedDays >= frequency) return "#D0A097";
 
-    if (passedDays + 3 >= frequency) return "#C3A980";
+    if (passedDays && passedDays + 3 >= frequency) return "#C3A980";
 
     return "#D1E6ED";
   };
@@ -56,11 +56,11 @@ export const Card = ({
         )}
         <View style={styles.iconContainer}>
           {isEditClicked ? (
-            <Icon onPress={handleSave} name="done" size={18} color="#56487C" />
+            <MaterialIcons onPress={handleSave} name="done" size={18} color="#56487C" />
           ) : (
-            <Icon onPress={() => setIsEditClicked(p => !p)} name="edit" size={18} color="#56487C" />
+            <MaterialIcons onPress={() => setIsEditClicked(p => !p)} name="edit" size={18} color="#56487C" />
           )}
-          <Icon onPress={() => onDelete(item)} name="close" size={18} color="#56487C" />
+          <MaterialIcons onPress={() => onDelete(item)} name="close" size={18} color="#56487C" />
 
         </View>
       </View>

@@ -36,14 +36,14 @@ export const Create = ({ onSaveButton, onClick }: Props) => {
   const handleSave = () => {
     const newItem = {
       ...inputsValue,
-      date: `1701126000000`,
+      date: `${new Date().getTime()}`,
       id: `${uuid.v4()}`
     }
     const passedDays = getDataDayDifference(newItem)
 
     onSaveButton({
       ...inputsValue,
-      date: `1701126000000`,
+      date: `${new Date().getTime()}`,
       passedDays,
       id: `${uuid.v4()}`
     });
