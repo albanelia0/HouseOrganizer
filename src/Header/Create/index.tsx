@@ -5,6 +5,7 @@ import uuid from 'react-native-uuid';
 import { CardType } from "../../Home/CardList/types";
 import { Props } from "./types";
 import { styles } from "./styles";
+import { getDataDayDifference } from "../../hooks/useDifferenceInDays/utils/getDifference";
 
 export const Create = ({ onSaveButton, onClick }: Props) => {
   const [inputsValue, setInputsValue] = useState<CardType>({
@@ -33,11 +34,18 @@ export const Create = ({ onSaveButton, onClick }: Props) => {
   };
 
   const handleSave = () => {
+    const newItem = {
+      ...inputsValue,
+      date: `1701126000000`,
+      id: `${uuid.v4()}`
+    }
+    const passedDays = getDataDayDifference(newItem)
+
     onSaveButton({
       ...inputsValue,
-      date: `${new Date().getTime()}`,
-      passedDays: 0,
-      id: uuid.v4()
+      date: `1701126000000`,
+      passedDays,
+      id: `${uuid.v4()}`
     });
     onClick();
   };

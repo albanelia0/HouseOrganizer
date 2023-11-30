@@ -1,18 +1,14 @@
 import { CardType } from "../../Home/CardList/types";
+import { getDataDayDifference } from "./utils/getDifference";
 
 export const useDifferenceInDays = (data: CardType[]): Array<CardType> | null => {
 
   if(!data) return null
 
   const getFinalResult = (() => {
-    const newResult = data.map((data) => {
+    const newResult = data.map((dt) => {
 
-      const currentDate = new Date().getTime();
-
-      const Difference_In_Time = Number(data.date) - currentDate;
-      const Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
-
-      return ({...data,passedDays: Math.round(Difference_In_Days)})
+      return ({...dt,passedDays: getDataDayDifference(dt)})
     })
     return newResult
   })()

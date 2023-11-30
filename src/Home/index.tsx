@@ -20,7 +20,7 @@ export const Home = (): JSX.Element => {
       if(!data) return
 
       const finalResult = useDifferenceInDays(data)
-      console.log("finalResult: ", finalResult)
+      console.log("res", finalResult)
       finalResult && setAllSavedData(finalResult)
     })()
   }, [])

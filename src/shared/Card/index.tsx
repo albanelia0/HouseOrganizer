@@ -17,17 +17,17 @@ export const Card = ({
   const [inputsValue, setInputsValue] = useState<CardType>(item);
 
   const renderColorLine = () => {
-    if (frequency <= passedDays) return "#EB9B9B";
+    if (passedDays >= frequency) return "#EB9B9B";
 
-    if (passedDays !== 0 && passedDays + 3 >= frequency) return "#ffc074";
+    if (passedDays + 3 >= frequency) return "#ffc074";
 
     return "#749A90";
   };
 
   const renderBackgroundColor = () => {
-    if (frequency < passedDays) return "#D0A097";
+    if (passedDays >= frequency) return "#D0A097";
 
-    if (passedDays !== 0 && passedDays + 3 >= frequency) return "#C3A980";
+    if (passedDays + 3 >= frequency) return "#C3A980";
 
     return "#D1E6ED";
   };
