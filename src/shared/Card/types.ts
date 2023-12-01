@@ -7,5 +7,6 @@ export interface Props {
   passedDays: number;
   onEdit: (item: CardType, isEdit: boolean) => void;
   onDelete: (item: CardType) => void;
+  onUpdate: (item: CardType) => void;
   item: CardType
 }

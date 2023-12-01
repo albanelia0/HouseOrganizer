@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
   },
   days: {
     fontSize: 10,
-    color: '#8F8989'
+    color: '#4E4A55'
   },
   title: {
     color: '#534E4E',

@@ -14,7 +14,8 @@ export const Card = ({
   passedDays,
   item,
   onEdit,
-  onDelete
+  onDelete,
+  onUpdate,
 }: Props): JSX.Element => {
   const [isEditClicked, setIsEditClicked] = useState(false);
   const [openModal, setOpenModal] = useState(false);
@@ -41,9 +42,14 @@ export const Card = ({
     onEdit(inputsValue, true)
   }
 
+  const handleUpdate = () => {
+    onUpdate(item)
+  }
+
   const handleDelete = () => {
     setOpenModal(true)
   }
+
   const handleCancelModal = () => {
     setOpenModal(false)
   }
@@ -64,6 +70,7 @@ export const Card = ({
           <Text style={styles.title}>{title}</Text>
         )}
         <View style={styles.iconContainer}>
+          <MaterialIcons onPress={handleUpdate} name="update" size={20} color="#56487C" />
           {isEditClicked ? (
             <MaterialIcons onPress={handleSave} name="done" size={18} color="#56487C" />
           ) : (

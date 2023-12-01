@@ -2,6 +2,7 @@ export interface Props {
   data: Array<CardType>;
   onEdit: (item: CardType, isEdit: boolean) => void;
   onDelete: (item: CardType) => void;
+  onUpdate: (item: CardType) => void;
 }
 
 export interface CardType {

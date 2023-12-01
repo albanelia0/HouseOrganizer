@@ -7,11 +7,12 @@ import { CardType } from './CardList/types';
 import { useDifferenceInDays } from '../hooks/useDifferenceInDays';
 import { styles } from './styles';
 import { Search } from './types';
+import { NotContent } from '../shared/NotContent';
 
 export const Home = (): JSX.Element => {
   const [allSavedData, setAllSavedData] = useState<CardType[]>([])
   const [searchInput, setSearchInput] = useState<Search>({value: "", list: [], error: false})
-  const {saveData, readData, deleteAllData} = useSavedDate()
+  const {saveData, readData} = useSavedDate()
 
   useEffect(() => {
     (async () => {
@@ -66,6 +67,27 @@ export const Home = (): JSX.Element => {
     saveData(res)
   }
 
+  const handleToUpdate = (target: CardType) => {
+    setAllSavedData(prev => {
+      const currentCardItem = prev.find(x => x.id  === target.id)
+      if(currentCardItem) {
+        const next = prev.map(x => {
+          if(x.id  === target.id) {
+            return {...target, date: `${new Date().getTime()}`, passedDays: 0}
+          }
+          return x
+        })
+
+        saveData(next)
+        return next
+      }
+
+      const next = prev
+      saveData(next)
+      return next
+  });
+  }
+
   return (
     <View style={styles.wrapper}>
       <ScrollView automaticallyAdjustKeyboardInsets={true}>
@@ -75,10 +97,16 @@ export const Home = (): JSX.Element => {
           onSaveButton={handleSaveButton}
           onSearchChange={handleSearchChange}
         />
-        <CardList onDelete={handleDelete} onEdit={handleSaveButton} data={searchInput.list.length ? searchInput.list : allSavedData}/>
+        {allSavedData.length ? (
+          <CardList
+            onUpdate={handleToUpdate}
+            onDelete={handleDelete}
+            onEdit={handleSaveButton}
+            data={searchInput.list.length ? searchInput.list : allSavedData}
+            />
+          ): <NotContent />
+        }
       </ScrollView>
-
-
     </View>
   )
 }
