@@ -5,6 +5,7 @@ import { Props } from "./types";
 import { styles } from "./styles";
 import { useState } from "react";
 import { CardType } from "../../Home/CardList/types";
+import { Modal } from "../Modal";
 
 export const Card = ({
   title,
@@ -16,6 +17,7 @@ export const Card = ({
   onDelete
 }: Props): JSX.Element => {
   const [isEditClicked, setIsEditClicked] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
   const [inputsValue, setInputsValue] = useState<CardType>(item);
 
   const renderColorLine = () => {
@@ -39,6 +41,13 @@ export const Card = ({
     onEdit(inputsValue, true)
   }
 
+  const handleDelete = () => {
+    setOpenModal(true)
+  }
+  const handleCancelModal = () => {
+    setOpenModal(false)
+  }
+
   return (
     <View
       style={{ ...styles.wrapper, backgroundColor: renderBackgroundColor() }}
@@ -60,7 +69,7 @@ export const Card = ({
           ) : (
             <MaterialIcons onPress={() => setIsEditClicked(p => !p)} name="edit" size={18} color="#56487C" />
           )}
-          <MaterialIcons onPress={() => onDelete(item)} name="close" size={18} color="#56487C" />
+          <MaterialIcons onPress={handleDelete} name="close" size={18} color="#56487C" />
 
         </View>
       </View>
@@ -85,6 +94,19 @@ export const Card = ({
         <Text style={styles.days}>{passedDays} days ago</Text>
         <Text style={styles.days}>Every {frequency}</Text>
       </View>
+
+      <Modal isVisible={openModal}>
+        <Modal.Container>
+          <Modal.Header title="Are you sure you want to delete it?" />
+          <Modal.Body>
+            <Text style={styles.modalText}>Accept to continue with this action</Text>
+            </Modal.Body>
+          <Modal.Footer>
+            <Button title="Cancel" onPress={handleCancelModal} />
+            <Button title="Accept" onPress={() => onDelete(item)} />
+          </Modal.Footer>
+        </Modal.Container>
+      </Modal>
     </View>
   );
 };
