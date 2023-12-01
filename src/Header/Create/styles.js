@@ -7,6 +7,7 @@ export const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     width: "100%",
+    gap: 30
   },
   input: {
     borderRadius: 7,
@@ -20,7 +21,24 @@ export const styles = StyleSheet.create({
     gap: 10,
     marginTop: 10,
   },
-  button: {
-    backgroundColor: "white",
+  dateContainer: {
+    flexDirection: "column",
+    width: "100%",
   },
+  button: {
+    padding: 10,
+    backgroundColor: '#b9b1d1',
+    borderRadius: 10,
+    color: '#56487C',
+    width: 100,
+    alignItems: "center",
+    alignSelf: "flex-end",
+    margin: 10
+  },
+  disabledButton: {
+    backgroundColor: '#dbd8d8',
+  },
+  disabledButtonText: {
+    color: '#8F8989'
+  }
 });

@@ -1,13 +1,16 @@
 import { useState } from "react";
-import { TextInput, View, Button, Text } from "react-native";
+import { TextInput, View, Button, Text, TouchableOpacity } from "react-native";
+
 import uuid from 'react-native-uuid';
 
 import { CardType } from "../../Home/CardList/types";
 import { Props } from "./types";
 import { styles } from "./styles";
 import { getDataDayDifference } from "../../hooks/useDifferenceInDays/utils/getDifference";
+import { DatePicker } from "./DatePicker";
 
 export const Create = ({ onSaveButton, onClick }: Props) => {
+  const [datePicker, setDatePicker] = useState(`${new Date().getTime()}`);
   const [inputsValue, setInputsValue] = useState<CardType>({
     title: "",
     desc: "",
@@ -36,19 +39,25 @@ export const Create = ({ onSaveButton, onClick }: Props) => {
   const handleSave = () => {
     const newItem = {
       ...inputsValue,
-      date: `${new Date().getTime()}`,
+      date: datePicker,
       id: `${uuid.v4()}`
     }
     const passedDays = getDataDayDifference(newItem)
 
     onSaveButton({
       ...inputsValue,
-      date: `${new Date().getTime()}`,
+      date: datePicker,
       passedDays,
       id: `${uuid.v4()}`
     });
     onClick();
   };
+  const handleToConfirmDate = (date: string) => {
+    setDatePicker(date)
+  }
+
+  const isDisabled = !inputsValue.title || !inputsValue.frequency
+  console.log("isDisabled", isDisabled)
 
   return (
     <View style={styles.wrapper}>
@@ -56,7 +65,7 @@ export const Create = ({ onSaveButton, onClick }: Props) => {
         style={styles.input}
         onChangeText={(value) => handleChange("title", value)}
         value={inputsValue.title}
-        placeholder="Add category name"
+        placeholder="Add task name"
         keyboardType="default"
       />
       <TextInput
@@ -77,7 +86,12 @@ export const Create = ({ onSaveButton, onClick }: Props) => {
         />
         <Text>days</Text>
       </View>
-      <Button title="Save" color="#56487C" onPress={handleSave} />
+      <View style={styles.dateContainer}>
+        <DatePicker onConfirm={handleToConfirmDate}/>
+        <TouchableOpacity disabled={isDisabled} style={{...styles.button, ...(isDisabled && styles.disabledButton)}} onPress={handleSave}>
+          <Text style={{...(isDisabled && styles.disabledButtonText)}} disabled={isDisabled}>Save</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };

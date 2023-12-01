@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
 import { Header } from "../Header"
 import { CardList } from './CardList';
 import { useSavedDate } from '../hooks/useSavedData';
@@ -68,12 +68,16 @@ export const Home = (): JSX.Element => {
 
   return (
     <View style={styles.wrapper}>
-      <Header
-        search={searchInput}
-        onSaveButton={handleSaveButton}
-        onSearchChange={handleSearchChange}
-      />
-      <CardList onDelete={handleDelete} onEdit={handleSaveButton} data={searchInput.list.length ? searchInput.list : allSavedData}/>
+      <ScrollView automaticallyAdjustKeyboardInsets={true}>
+
+        <Header
+          search={searchInput}
+          onSaveButton={handleSaveButton}
+          onSearchChange={handleSearchChange}
+        />
+        <CardList onDelete={handleDelete} onEdit={handleSaveButton} data={searchInput.list.length ? searchInput.list : allSavedData}/>
+      </ScrollView>
+
 
     </View>
   )

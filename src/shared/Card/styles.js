@@ -52,6 +52,5 @@ export const styles = StyleSheet.create({
     width: '80%',
     padding: 10,
     marginTop: 10,
-    
   }
 });
