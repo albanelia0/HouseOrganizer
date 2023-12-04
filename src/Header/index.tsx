@@ -19,7 +19,7 @@ export const Header = ({onSearchChange, onSaveButton, search, onSort}: Props) =>
         <Logo />
         <TouchableOpacity
           onPress={() => setIsCreatedClick(p => !p)}
-          accessibilityLabel="Learn more about this purple button"
+          accessibilityLabel="Button to create a new task"
         >
           <FeatherIcons name="plus" size={30} color="#56487C" />
         </TouchableOpacity>

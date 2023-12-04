@@ -31,6 +31,7 @@ export const DatePicker = ({ onConfirm}: Props) => {
       <View style={styles.inputContainer}>
         <Text>Made on:</Text>
         <TextInput
+          showSoftInputOnFocus={false}
           style={styles.input}
           placeholder="Choose date"
           value={date.toDateString()}

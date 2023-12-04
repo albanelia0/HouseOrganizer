@@ -113,13 +113,13 @@ export const Home = (): JSX.Element => {
 
   return (
     <View style={styles.wrapper}>
-      <ScrollView automaticallyAdjustKeyboardInsets={true}>
         <Header
           search={searchInput}
           onSaveButton={handleSaveButton}
           onSearchChange={handleSearchChange}
           onSort={handleSort}
         />
+      <ScrollView automaticallyAdjustKeyboardInsets={true}>
         {allSavedData.length ? (
           <CardList
             onUpdate={handleToUpdate}
