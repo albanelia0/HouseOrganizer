@@ -16,7 +16,6 @@ export const useSavedDate = () => {
     try {
       const result = await AsyncStorage.getItem(STORAGE_KEY);
       if (result !== null) {
-        console.log("result", JSON.parse(result));
         return JSON.parse(result);
       }
     } catch (e) {

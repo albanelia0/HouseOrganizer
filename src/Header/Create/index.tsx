@@ -57,7 +57,6 @@ export const Create = ({ onSaveButton, onClick }: Props) => {
   }
 
   const isDisabled = !inputsValue.title || !inputsValue.frequency
-  console.log("isDisabled", isDisabled)
 
   return (
     <View style={styles.wrapper}>
