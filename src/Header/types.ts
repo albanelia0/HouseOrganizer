@@ -5,5 +5,6 @@ import { Search } from "../Home/types";
 export interface Props {
   onSearchChange: (value: string) => void;
   onSaveButton: (target: CardType) => void;
+  onSort: () => void;
   search: Search
 }

@@ -1,4 +1,6 @@
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
+import { Text, View, TouchableOpacity } from 'react-native';
+import FeatherIcons from 'react-native-vector-icons/Feather';
+
 import { Logo } from './Logo';
 import { Props } from './types';
 import { Search } from './Search';
@@ -6,7 +8,7 @@ import { useState } from 'react';
 import { Create } from './Create';
 import { styles } from './styles';
 
-export const Header = ({onSearchChange, onSaveButton, search}: Props) => {
+export const Header = ({onSearchChange, onSaveButton, search, onSort}: Props) => {
   const [isCreatedClicked, setIsCreatedClick] = useState(false)
 
   const handleCreateClick = () => setIsCreatedClick(p => !p)
@@ -19,11 +21,11 @@ export const Header = ({onSearchChange, onSaveButton, search}: Props) => {
           onPress={() => setIsCreatedClick(p => !p)}
           accessibilityLabel="Learn more about this purple button"
         >
-          <Text style={styles.plusButton}>﹢</Text>
+          <FeatherIcons name="plus" size={30} color="#56487C" />
         </TouchableOpacity>
       </View>
       {isCreatedClicked ? <Create onClick={handleCreateClick} onSaveButton={onSaveButton} />:
-      <Search onChange={onSearchChange} value={search.value} isError={search.error} />}
+      <Search onSort={onSort} onChange={onSearchChange} value={search.value} isError={search.error} />}
     </View>
   )
 }

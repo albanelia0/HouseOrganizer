@@ -34,7 +34,7 @@ export const Card = ({
 
     if (passedDays && passedDays + 3 >= frequency) return "#C3A980";
 
-    return "#D1E6ED";
+    return "#82bfb1";
   };
 
   const handleSave = () => {

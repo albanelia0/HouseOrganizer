@@ -14,7 +14,7 @@ export const Create = ({ onSaveButton, onClick }: Props) => {
   const [inputsValue, setInputsValue] = useState<CardType>({
     title: "",
     desc: "",
-    frequency: "",
+    frequency: 0,
     passedDays: 0,
     date: "",
     id: ""
@@ -31,7 +31,7 @@ export const Create = ({ onSaveButton, onClick }: Props) => {
         break;
 
       case "frequency":
-        setInputsValue((prev) => ({ ...prev, frequency: value }));
+        setInputsValue((prev) => ({ ...prev, frequency: +value }));
         break;
     }
   };

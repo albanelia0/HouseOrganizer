@@ -8,7 +8,7 @@ export interface Props {
 export interface CardType {
   title: string;
   desc: string;
-  frequency: string;
+  frequency: number;
   passedDays: number;
   date: string;
   id: string;
