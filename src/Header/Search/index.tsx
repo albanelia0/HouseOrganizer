@@ -6,7 +6,7 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 export const Search = ({onChange, value, isError, onSort}: Props) => {
 
   const handleSort = () => {
-    onSort(p => !p)
+    onSort()
   }
 
   return (

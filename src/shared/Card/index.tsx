@@ -1,11 +1,12 @@
 import { View, Text, TextInput, Button } from "react-native";
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 import { Props } from "./types";
 import { styles } from "./styles";
 import { useState } from "react";
 import { CardType } from "../../Home/CardList/types";
-import { Modal } from "../Modal";
+import { DeleteModal } from "../../Home/DeleteModal";
+import { UpdateModal } from "../../Home/UpdateModal";
 
 export const Card = ({
   title,
@@ -19,6 +20,7 @@ export const Card = ({
 }: Props): JSX.Element => {
   const [isEditClicked, setIsEditClicked] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [inputsValue, setInputsValue] = useState<CardType>(item);
 
   const renderColorLine = () => {
@@ -38,21 +40,29 @@ export const Card = ({
   };
 
   const handleSave = () => {
-    setIsEditClicked(false)
-    onEdit(inputsValue, true)
-  }
+    setIsEditClicked(false);
+    onEdit(inputsValue, true);
+  };
+
+  
+  const handleDelete = () => {
+    setOpenModal(true);
+  };
+  
+  const handleCancelModal = () => {
+    setOpenModal(false);
+  };
 
   const handleUpdate = () => {
+    setIsUpdateModalOpen(true)
+  };
+  const handleCancelUpdateModal = () => {
+    setIsUpdateModalOpen(false)
+  };
+  const handleAcceptlUpdateModal = () => {
     onUpdate(item)
-  }
-
-  const handleDelete = () => {
-    setOpenModal(true)
-  }
-
-  const handleCancelModal = () => {
-    setOpenModal(false)
-  }
+    setIsUpdateModalOpen(false)
+  };
 
   return (
     <View
@@ -62,7 +72,7 @@ export const Card = ({
         {isEditClicked ? (
           <TextInput
             style={styles.editInput}
-            onChangeText={(v) => setInputsValue(p => ({...p, title: v}))}
+            onChangeText={(v) => setInputsValue((p) => ({ ...p, title: v }))}
             value={inputsValue.title}
             keyboardType="default"
           />
@@ -70,14 +80,35 @@ export const Card = ({
           <Text style={styles.title}>{title}</Text>
         )}
         <View style={styles.iconContainer}>
-          <MaterialIcons onPress={handleUpdate} name="update" size={20} color="#56487C" />
+          <MaterialIcons
+            onPress={handleUpdate}
+            name="update"
+            size={20}
+            color="#56487C"
+          />
           {isEditClicked ? (
-            <MaterialIcons onPress={handleSave} name="done" size={18} color="#56487C" />
+            <MaterialIcons
+              onPress={handleSave}
+              name="done"
+              size={18}
+              color="#56487C"
+            />
           ) : (
-            <MaterialIcons onPress={() => setIsEditClicked(p => !p)} name="edit" size={18} color="#56487C" />
+            <MaterialIcons
+              onPress={() => setIsEditClicked((p) => !p)}
+              name="edit"
+              size={18}
+              color="#56487C"
+            />
           )}
-          <MaterialIcons onPress={handleDelete} name="close" size={18} color="#56487C" />
-
+          {!isEditClicked && (
+            <MaterialIcons
+              onPress={handleDelete}
+              name="close"
+              size={18}
+              color="#56487C"
+            />
+          )}
         </View>
       </View>
       <View
@@ -89,7 +120,7 @@ export const Card = ({
       {isEditClicked ? (
         <TextInput
           style={styles.editInput}
-          onChangeText={(v) => setInputsValue(p => ({...p, desc: v}))}
+          onChangeText={(v) => setInputsValue((p) => ({ ...p, desc: v }))}
           value={inputsValue.desc}
           keyboardType="default"
         />
@@ -102,18 +133,18 @@ export const Card = ({
         <Text style={styles.days}>Every {frequency}</Text>
       </View>
 
-      <Modal isVisible={openModal}>
-        <Modal.Container>
-          <Modal.Header title="Are you sure you want to delete it?" />
-          <Modal.Body>
-            <Text style={styles.modalText}>Accept to continue with this action</Text>
-            </Modal.Body>
-          <Modal.Footer>
-            <Button title="Cancel" onPress={handleCancelModal} />
-            <Button title="Accept" onPress={() => onDelete(item)} />
-          </Modal.Footer>
-        </Modal.Container>
-      </Modal>
+      <DeleteModal
+        openModal={openModal}
+        onCancel={handleCancelModal}
+        onDelete={onDelete}
+        item={item}
+      />
+      <UpdateModal
+        openModal={isUpdateModalOpen}
+        onCancel={handleCancelUpdateModal}
+        onUpdate={handleAcceptlUpdateModal}
+        item={item}
+      />
     </View>
   );
 };

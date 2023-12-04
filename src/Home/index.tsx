@@ -45,12 +45,15 @@ export const Home = (): JSX.Element => {
   };
 
   const handleSaveButton = (target: CardType, isEdit?: boolean) => {
+    const savedTask = allSavedData.find((x) => x.id === target.id);
+
+    if(savedTask?.title === target.title && savedTask?.desc === target.desc) return
+
     setAllSavedData((prev) => {
-      const alreadyExists = prev.some((x) => x.id === target.id);
-      if (alreadyExists && isEdit) {
+      if (savedTask && isEdit) {
         const next = prev.map((x) => {
           if (x.id === target.id) {
-            return target;
+            return {...savedTask, title: target.title, desc: target.desc};
           }
           return x;
         });
@@ -58,7 +61,7 @@ export const Home = (): JSX.Element => {
         saveData(next);
         return next;
       }
-      if (alreadyExists) return prev;
+      if (savedTask) return prev;
 
       const next = [target, ...prev];
       saveData(next);
@@ -109,7 +112,6 @@ export const Home = (): JSX.Element => {
     setIsSorted(p => !p)
   };
 
-console.log("searchInput", searchInput)
   return (
     <View style={styles.wrapper}>
       <ScrollView automaticallyAdjustKeyboardInsets={true}>
