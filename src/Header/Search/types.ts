@@ -3,4 +3,5 @@ export interface Props {
   onSort: () => void;
   value: string;
   isError: boolean
+  isSorted: boolean
 }

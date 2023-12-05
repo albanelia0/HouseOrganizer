@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { Create } from './Create';
 import { styles } from './styles';
 
-export const Header = ({onSearchChange, onSaveButton, search, onSort}: Props) => {
+export const Header = ({onSearchChange, onSaveButton, search, onSort, isSorted}: Props) => {
   const [isCreatedClicked, setIsCreatedClick] = useState(false)
 
   const handleCreateClick = () => setIsCreatedClick(p => !p)
@@ -25,7 +25,7 @@ export const Header = ({onSearchChange, onSaveButton, search, onSort}: Props) =>
         </TouchableOpacity>
       </View>
       {isCreatedClicked ? <Create onClick={handleCreateClick} onSaveButton={onSaveButton} />:
-      <Search onSort={onSort} onChange={onSearchChange} value={search.value} isError={search.error} />}
+      <Search isSorted={isSorted} onSort={onSort} onChange={onSearchChange} value={search.value} isError={search.error} />}
     </View>
   )
 }

@@ -22,7 +22,7 @@ export const DatePicker = ({ onConfirm}: Props) => {
   }
 
   const handleCancel = () => {
-    setOpen(false)
+    setOpen(p => !p)
     setDate(new Date())
   }
 
@@ -35,7 +35,7 @@ export const DatePicker = ({ onConfirm}: Props) => {
           style={styles.input}
           placeholder="Choose date"
           value={date.toDateString()}
-          onPressIn={() => setOpen(p => !p)}
+          onPressIn={handleCancel}
         />
       </View>
       {open && (

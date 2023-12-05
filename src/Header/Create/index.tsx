@@ -79,7 +79,7 @@ export const Create = ({ onSaveButton, onClick }: Props) => {
         <TextInput
           style={styles.input}
           onChangeText={(value) => handleChange("frequency", value)}
-          value={`${inputsValue?.frequency}`}
+          value={!!inputsValue.frequency ? `${inputsValue?.frequency}` : ""}
           placeholder="days"
           keyboardType="numeric"
         />

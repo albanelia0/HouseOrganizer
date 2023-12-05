@@ -21,5 +21,12 @@ export const styles = StyleSheet.create({
     fontSize: 14,
     textAlign: "center",
     marginTop: 10
+  },
+  sortedButton: {
+    borderRadius: 5,
+    padding: 5
+  },
+  isSorted: {
+    backgroundColor: "#FFF",
   }
 });

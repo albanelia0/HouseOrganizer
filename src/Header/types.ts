@@ -7,4 +7,5 @@ export interface Props {
   onSaveButton: (target: CardType) => void;
   onSort: () => void;
   search: Search
+  isSorted: boolean
 }

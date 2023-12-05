@@ -3,7 +3,7 @@ import { Props } from "./types";
 import { styles } from "./styles";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
-export const Search = ({onChange, value, isError, onSort}: Props) => {
+export const Search = ({onChange, value, isError, onSort, isSorted}: Props) => {
 
   const handleSort = () => {
     onSort()
@@ -19,7 +19,9 @@ export const Search = ({onChange, value, isError, onSort}: Props) => {
           placeholder="Search..."
           keyboardType="default"
         />
-        <MaterialCommunityIcons onPress={handleSort} name="sort" size={22} color="#9C568A"  />
+        <View style={{...styles.sortedButton, ...(isSorted && styles.isSorted)}}>
+          <MaterialCommunityIcons onPress={handleSort} name="sort" size={22} color="#9C568A"  />
+        </View>
       </View>
         {isError && value && <Text style={isError && styles.error}>Not found</Text>}
     </View>

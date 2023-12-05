@@ -12,7 +12,6 @@ import { NotContent } from "../shared/NotContent";
 export const Home = (): JSX.Element => {
   const [allSavedData, setAllSavedData] = useState<CardType[]>([]);
   const [isSorted, setIsSorted] = useState(Boolean);
-  const [sortedData, setSortedData] = useState<CardType[]>([]);
   const [searchInput, setSearchInput] = useState<Search>({
     value: "",
     list: [],
@@ -114,6 +113,7 @@ export const Home = (): JSX.Element => {
   return (
     <View style={styles.wrapper}>
         <Header
+          isSorted={isSorted}
           search={searchInput}
           onSaveButton={handleSaveButton}
           onSearchChange={handleSearchChange}
