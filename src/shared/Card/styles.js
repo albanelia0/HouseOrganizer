@@ -26,7 +26,7 @@ export const styles = StyleSheet.create({
     color: '#534E4E',
     paddingBottom: 10,
     textAlign: 'center',
-    fontSize: 13
+    fontSize: 16
   },
   desc: {
     paddingTop: 10,
