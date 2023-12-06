@@ -1,12 +1,26 @@
+import { useState } from "react";
 import { View, Text, TextInput, Button } from "react-native";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
-import { Props } from "./types";
-import { styles } from "./styles";
-import { useState } from "react";
 import { CardType } from "../../Home/CardList/types";
 import { DeleteModal } from "../../Home/DeleteModal";
 import { UpdateModal } from "../../Home/UpdateModal";
+import { getPriority } from "../utils/priority";
+
+import { Props } from "./types";
+import { styles } from "./styles";
+
+const LINE_COLORS = {
+  high: "#EB9B9B",
+  medium: "#ffc074",
+  low: "#749A90",
+};
+
+const BACKGROUND_COLORS = {
+  high: "#D0A097",
+  medium: "#C3A980",
+  low: "#82bfb1",
+};
 
 export const Card = ({
   title,
@@ -23,50 +37,37 @@ export const Card = ({
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [inputsValue, setInputsValue] = useState<CardType>(item);
 
-  const renderColorLine = () => {
-    if (passedDays >= frequency) return "#EB9B9B";
-
-    if (passedDays && passedDays + 3 >= frequency) return "#ffc074";
-
-    return "#749A90";
-  };
-
-  const renderBackgroundColor = () => {
-    if (passedDays >= frequency) return "#D0A097";
-
-    if (passedDays && passedDays + 3 >= frequency) return "#C3A980";
-
-    return "#82bfb1";
-  };
-
   const handleSave = () => {
     setIsEditClicked(false);
     onEdit(inputsValue, true);
   };
 
-  
   const handleDelete = () => {
     setOpenModal(true);
   };
-  
+
   const handleCancelModal = () => {
     setOpenModal(false);
   };
 
   const handleUpdate = () => {
-    setIsUpdateModalOpen(true)
+    setIsUpdateModalOpen(true);
   };
   const handleCancelUpdateModal = () => {
-    setIsUpdateModalOpen(false)
+    setIsUpdateModalOpen(false);
   };
   const handleAcceptlUpdateModal = () => {
-    onUpdate(item)
-    setIsUpdateModalOpen(false)
+    onUpdate(item);
+    setIsUpdateModalOpen(false);
   };
 
   return (
     <View
-      style={{ ...styles.wrapper, backgroundColor: renderBackgroundColor() }}
+      style={{
+        ...styles.wrapper,
+        backgroundColor:
+          BACKGROUND_COLORS[getPriority({ passedDays, frequency })],
+      }}
     >
       <View style={styles.titleContainer}>
         {isEditClicked ? (
@@ -113,7 +114,8 @@ export const Card = ({
       </View>
       <View
         style={{
-          borderBottomColor: renderColorLine(),
+          borderBottomColor:
+            LINE_COLORS[getPriority({ passedDays, frequency })],
           borderBottomWidth: 1.5,
         }}
       />

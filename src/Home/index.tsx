@@ -8,6 +8,7 @@ import { useDifferenceInDays } from "../hooks/useDifferenceInDays";
 import { styles } from "./styles";
 import { Search } from "./types";
 import { NotContent } from "../shared/NotContent";
+import { getPriority } from "../shared/utils/priority";
 
 export const Home = (): JSX.Element => {
   const [allSavedData, setAllSavedData] = useState<CardType[]>([]);
@@ -99,8 +100,20 @@ export const Home = (): JSX.Element => {
   };
 
   const renderList= () => {
+
     if (isSorted) {
-        const res = [...allSavedData].sort((a, b) => b.passedDays >= a.passedDays ? 1 : -1);
+        const res = [...allSavedData].sort(
+          (a, b) => {
+            const numberedPrio = {
+              high: 2,
+              medium: 1,
+              low: 0,
+            }
+            const aPrio = numberedPrio[getPriority(a)]
+            const bPrio = numberedPrio[getPriority(b)]
+            return bPrio >= aPrio ? 1 : -1
+          }
+        );
         return res
     }
     return allSavedData
