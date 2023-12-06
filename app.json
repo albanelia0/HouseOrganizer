@@ -4,10 +4,10 @@
     "slug": "houseOrganizer",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/miLogo.png",
+    "icon": "./assets/HO.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/miLogo.png",
+      "image": "./assets/HO.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -17,15 +17,6 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.albanelia0.houseOrganizer"
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/miLogo.png",
-        "backgroundColor": "#ffffff"
-      }
-    },
-    "web": {
-      "favicon": "./assets/miLogo.png"
     },
     "extra": {
       "eas": {
