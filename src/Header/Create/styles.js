@@ -9,6 +9,11 @@ export const styles = StyleSheet.create({
     width: "100%",
     gap: 30
   },
+  titleContainer: {
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
   input: {
     borderRadius: 7,
     backgroundColor: "#FFF",

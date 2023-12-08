@@ -60,20 +60,22 @@ export const Create = ({ onSaveButton, onClick }: Props) => {
 
   return (
     <View style={styles.wrapper}>
-      <TextInput
-        style={styles.input}
-        onChangeText={(value) => handleChange("title", value)}
-        value={inputsValue.title}
-        placeholder="Add task name"
-        keyboardType="default"
-      />
-      <TextInput
-        style={styles.input}
-        onChangeText={(value) => handleChange("desc", value)}
-        value={inputsValue.desc}
-        placeholder="Description"
-        keyboardType="default"
-      />
+      <View style={styles.titleContainer}>
+        <TextInput
+          style={styles.input}
+          onChangeText={(value) => handleChange("title", value)}
+          value={inputsValue.title}
+          placeholder="Add task name"
+          keyboardType="default"
+        />
+        <TextInput
+          style={styles.input}
+          onChangeText={(value) => handleChange("desc", value)}
+          value={inputsValue.desc}
+          placeholder="Description"
+          keyboardType="default"
+        />
+      </View>
       <View style={styles.daysContainer}>
         <Text>Every</Text>
         <TextInput
