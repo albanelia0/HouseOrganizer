@@ -1,0 +1,6 @@
+module Pods_houseOrganizer {
+  umbrella header "Pods-houseOrganizer-umbrella.h"
+
+  export *
+  module * { export * }
+}
