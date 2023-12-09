@@ -9,6 +9,7 @@ import { styles } from "./styles";
 import { Search } from "./types";
 import { NotContent } from "../shared/NotContent";
 import { getPriority } from "../shared/utils/priority";
+import { useIsVisible } from "../hooks/useIsVisible";
 
 export const Home = (): JSX.Element => {
   const [allSavedData, setAllSavedData] = useState<CardType[]>([]);
@@ -19,17 +20,23 @@ export const Home = (): JSX.Element => {
     error: false,
   });
   const { saveData, readData } = useSavedDate();
+  const { visible } = useIsVisible()
+
+
+  const getData = async () => {
+    const data = await readData();
+
+    if (!data) return;
+
+    const finalResult = useDifferenceInDays(data);
+    finalResult && setAllSavedData(finalResult);
+  }
 
   useEffect(() => {
-    (async () => {
-      const data = await readData();
-
-      if (!data) return;
-
-      const finalResult = useDifferenceInDays(data);
-      finalResult && setAllSavedData(finalResult);
-    })();
-  }, []);
+    if(visible === "active") {
+      getData()
+    }
+  }, [visible]);
 
   const handleSearchChange = (value: string) => {
     const res = allSavedData.filter(({ title }) => {
