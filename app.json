@@ -2,7 +2,7 @@
   "expo": {
     "name": "houseOrganizer",
     "slug": "houseOrganizer",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "orientation": "portrait",
     "icon": "./assets/HO.png",
     "userInterfaceStyle": "light",
@@ -16,7 +16,8 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.albanelia0.houseOrganizer"
+      "bundleIdentifier": "com.albanelia0.houseOrganizer",
+      "buildNumber": "4"
     },
     "extra": {
       "eas": {
