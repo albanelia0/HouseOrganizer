@@ -9,7 +9,6 @@ import { styles } from "./styles";
 import { Search } from "./types";
 import { NotContent } from "../shared/NotContent";
 import { getPriority } from "../shared/utils/priority";
-import * as Notifications from 'expo-notifications';
 import { useIsVisible } from "../hooks/useIsVisible";
 
 export const Home = (): JSX.Element => {
