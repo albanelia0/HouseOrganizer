@@ -12,6 +12,20 @@ export const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     width: "100%",
+    gap: 5
+  },
+  iconContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    width: "20%",
+    gap: 10,
+  },
+  title: {
+    color: '#534E4E',
+    paddingBottom: 10,
+    textAlign: 'center',
+    fontSize: 16,
+    width: "70%",
   },
   daysContainer: {
     flexDirection: 'row',
@@ -22,20 +36,9 @@ export const styles = StyleSheet.create({
     fontSize: 10,
     color: '#4E4A55'
   },
-  title: {
-    color: '#534E4E',
-    paddingBottom: 10,
-    textAlign: 'center',
-    fontSize: 16
-  },
   desc: {
     paddingTop: 10,
     fontSize: 13
-  },
-  iconContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    gap: 20,
   },
   pencil: {
     fontSize: 19,

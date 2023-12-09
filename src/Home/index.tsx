@@ -10,6 +10,7 @@ import { Search } from "./types";
 import { NotContent } from "../shared/NotContent";
 import { getPriority } from "../shared/utils/priority";
 import * as Notifications from 'expo-notifications';
+import { useIsVisible } from "../hooks/useIsVisible";
 
 export const Home = (): JSX.Element => {
   const [allSavedData, setAllSavedData] = useState<CardType[]>([]);
@@ -20,31 +21,25 @@ export const Home = (): JSX.Element => {
     error: false,
   });
   const { saveData, readData } = useSavedDate();
+  const { visible } = useIsVisible()
+
+
+  const getData = async () => {
+    const data = await readData();
+
+    if (!data) return;
+
+    const finalResult = useDifferenceInDays(data);
+    finalResult && setAllSavedData(finalResult);
+  }
 
   useEffect(() => {
-    (async () => {
-      const data = await readData();
-
-      if (!data) return;
-
-      const finalResult = useDifferenceInDays(data);
-      finalResult && setAllSavedData(finalResult);
-      // Add a listener for incoming notifications
-      Notifications.addListener((notification) => {
-      // Process the notification
-      console.log(notification);
-});
-    })();
-  }, []);
+    if(visible === "active") {
+      getData()
+    }
+  }, [visible]);
 
   const handleSearchChange = (value: string) => {
-    Notifications.addListener((notification) => {
-      // Display the notification
-      Notifications.presentLocalNotificationAsync({
-        title: notification.title,
-        body: notification.body,
-      });
-    });
     const res = allSavedData.filter(({ title }) => {
       return title.toLowerCase().includes(value.toLowerCase());
     });
