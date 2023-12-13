@@ -11,10 +11,7 @@ export const DeleteModal = ({openModal, onCancel, onDelete, item}: Props) => {
         <Modal.Body>
           <Text style={styles.modalText}>Accept to continue with this action</Text>
           </Modal.Body>
-        <Modal.Footer>
-          <Button title="Cancel" onPress={onCancel} />
-          <Button title="Accept" onPress={() => onDelete(item)} />
-        </Modal.Footer>
+        <Modal.Buttons onPress={() => onDelete(item)} onCancel={onCancel} />
       </Modal.Container>
     </Modal>
   )

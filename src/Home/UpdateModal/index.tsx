@@ -13,10 +13,7 @@ export const UpdateModal = ({openModal, onCancel, onUpdate, item}: Props) => {
             The date would be updated to {new Date().toLocaleDateString()}
           </Text>
           </Modal.Body>
-        <Modal.Footer>
-          <Button title="Cancel" onPress={onCancel} />
-          <Button title="Accept" onPress={onUpdate} />
-        </Modal.Footer>
+        <Modal.Buttons onPress={onUpdate} onCancel={onCancel} />
       </Modal.Container>
     </Modal>
   )

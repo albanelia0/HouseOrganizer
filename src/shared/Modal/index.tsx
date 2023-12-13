@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, Button } from "react-native";
 import RNModal from "react-native-modal";
 
 import { ModalProps } from "./types";
@@ -31,6 +31,7 @@ const ModalContainer = ({ children }: { children: React.ReactNode }) => (
 const ModalHeader = ({ title }: { title: string }) => (
   <View style={styles.header}>
     <Text style={styles.text}>{title}</Text>
+    <View style={styles.line}/>
   </View>
 );
 
@@ -42,8 +43,21 @@ const ModalFooter = ({ children }: { children?: React.ReactNode }) => (
   <View style={styles.footer}>{children}</View>
 );
 
+const ModalButtons = ({ onPress, onCancel }: {onPress: () => void, onCancel: () => void}) => {
+  return (
+    <>
+      <View style={styles.line}/>
+      <View style={styles.buttons}>
+        <Button color="#b577a7" title="Cancel" onPress={onCancel} />
+        <View style={styles.verticalLine}/>
+        <Button color="#b577a7" title="Accept" onPress={onPress} />
+      </View>
+    </>
+)};
+
 
 Modal.Header = ModalHeader;
 Modal.Container = ModalContainer;
 Modal.Body = ModalBody;
 Modal.Footer = ModalFooter;
+Modal.Buttons = ModalButtons;
